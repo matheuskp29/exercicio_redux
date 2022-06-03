@@ -65,3 +65,19 @@ const sorteiaValor = (nome) => {
     return solicitacarCashback(nome, numero)
 }
 
+const transacao = (store) => {
+    let numeroAleatorio = Math.floor(Math.random() * 4)
+    let vect = ['Matheus', 'Alec', 'Douglas', 'Moises']
+    let json = {
+        0: store.dispatch(criarContrato(vect[numeroAleatorio], 50)),
+        1: store.dispatch(cancelarContrato(vect[numeroAleatorio])),
+        2: store.dispatch(sorteiaValor(vect[numeroAleatorio]))
+    }
+
+    return json.numeroAleatorio
+}
+
+setInterval(() => {
+    transacao(store)
+    console.log(store.getState())
+}, 5000)
